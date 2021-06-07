@@ -5,9 +5,9 @@ import './default.scss';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" data-test="appComponent">
       <Header />
-      <div className="main">
+      <div className="main" data-test="mainComponent">
         <Homepage />
       </div>
     </div>

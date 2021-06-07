@@ -4,7 +4,7 @@ import './page-style.scss';
 
 const Homepage = props =>{
     return(
-        <section className="homePage">
+        <section className="homePage" data-test="homePageComponent">
             <Directory />
         </section>
     )
