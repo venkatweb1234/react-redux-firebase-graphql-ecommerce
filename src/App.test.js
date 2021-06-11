@@ -17,8 +17,8 @@ describe('App Compoent Ecomm', () =>{
       const wrapper = findByTestattr(component, 'appComponent');
       expect(wrapper.length).toBe(1);
   });
-  it('Should render Main component Ecomm', () =>{
-    const wrapper = findByTestattr(component, 'mainComponent');
-    expect(wrapper.length).toBe(1);
-});
+//   it('Should render Main component Ecomm', () =>{
+//     const wrapper = findByTestattr(component, 'mainComponent');
+//     expect(wrapper.length).toBe(1);
+// });
 });
