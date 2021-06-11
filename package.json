@@ -21,12 +21,7 @@
     "test:all": "set CI=true && react-scripts test && npm run lint",
     "eject": "react-scripts eject"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint:fix",
-      "pre-push": "npm run lint"
-    }
-  },
+  
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -46,6 +41,21 @@
     ]
   },
   "devDependencies": {
-    "husky": "^6.0.0"
+    "husky": "^6.0.0",
+    "lint-staged": "^11.0.0"
+  },
+
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run lint"
+    }
+  },
+  "lint-staged":{
+    "*.{js,json,css,md,html}":[
+      "prettier --singe-quote --write",
+      "git add"
+    ]
   }
+
 }
