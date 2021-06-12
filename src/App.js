@@ -99,7 +99,7 @@ const App = () => {
         <Route exact path="/" render={() => <HomepageLayout currentUser={currentauth.currentUser}>
           <Homepage />
         </HomepageLayout>} />
-        <Route path="/registration" render={() => <MainLayout currentUser={currentauth.currentUser}>
+        <Route path="/registration" render={() => currentauth.currentUser ? <Redirect to="/" /> :<MainLayout currentUser={currentauth.currentUser}>
           <Registrationabc />
         </MainLayout>} />
         <Route path="/login" render={() => currentauth.currentUser ? <Redirect to="/" /> : <MainLayout currentUser={currentauth.currentUser}>

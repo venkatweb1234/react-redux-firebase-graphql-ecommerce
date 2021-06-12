@@ -17,8 +17,5 @@ describe('Registartion Compoent test', () =>{
      expect(wrapperRegisComponent.length).toBe(1);
  });
 
- it('Should render registartion page', () =>{
-     let wrapperRegispageCompo =  findByTestattr(registrationCompo, 'registartionPage');
-     expect(wrapperRegispageCompo.length).toBe(1);
- })
+ 
 });
