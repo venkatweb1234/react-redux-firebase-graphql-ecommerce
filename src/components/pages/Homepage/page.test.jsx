@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import {findByTestattr} from '../../_Utils/_common_test_functions';
+import {findByTestattr} from '../../../_Utils/_common_test_functions';
 import Homepage from './page-compoent';
 
 const steup = (props={}) =>{

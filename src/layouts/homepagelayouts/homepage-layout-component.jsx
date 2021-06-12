@@ -5,7 +5,7 @@ import Header from '../../components/Header/header-component';
 const HomepageLayout = props => {
     return (
         <div data-test="HomepageCompoent">
-            <Header />
+            <Header {...props}/>
             {props.children}
             <Footer />
         </div>
