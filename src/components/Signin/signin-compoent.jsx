@@ -4,6 +4,8 @@ import './signin-style.scss';
 import { auth, signInWithGoogle } from './../../firebase/_util';
 import { initialSigninState } from '../constants/constants-variables';
 import FormInput from '../forms/FormInput/forminput-compoent';
+import AuthWrapper from '../AuthWrapper/authwrap-component';
+import {Link} from 'react-router-dom';
 class SignIn extends Component {
     constructor(props) {
         super(props);
@@ -33,9 +35,11 @@ class SignIn extends Component {
     }
     render() {
         const { email, password } = this.state;
-        return (<div className="signin">
-            <div className="wrap">
-                <h2>LogIn</h2>
+        const configWrapper ={
+            headline:'LogIn'
+        }
+        return (
+            <AuthWrapper {...configWrapper}>
                 <div className="formWrap">
                     <form type="submit" onSubmit={this.handleSubmit} data-test="submitEventhadle">
                         <FormInput
@@ -62,10 +66,15 @@ class SignIn extends Component {
                                 </Buttons>
                             </div>
                         </div>
+                        <div className="links">
+                            <Link to="/recovery">
+                                Reset Password
+                            </Link>
+                        </div>
                     </form>
                 </div>
-            </div>
-        </div>)
+            </AuthWrapper>
+        )
     }
 }
 export default SignIn;

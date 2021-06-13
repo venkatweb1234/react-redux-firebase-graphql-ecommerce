@@ -4,6 +4,7 @@ import Buttons from '../forms/Button/button-component';
 import FormInput from '../forms/FormInput/forminput-compoent';
 import './signup-style.scss';
 import { auth, handleUserProfile } from '../../firebase/_util';
+import AuthWrapper from '../AuthWrapper/authwrap-component';
 class Signup extends Component {
     constructor(props) {
         super(props);
@@ -42,10 +43,12 @@ class Signup extends Component {
     }
     render() {
         const { displayName, email, password, confirmPassword, errors } = this.state;
+        const configAuthWrapper ={
+            headline:'Registration'
+        }
         return (
-            <div className="signup">
-                <div className="wrap">
-                    <h2>Sign Up</h2>
+            <AuthWrapper {...configAuthWrapper}>
+                <div className="formWrap">
                     {
                         errors.length > 0 && (
                             <ul>
@@ -59,47 +62,45 @@ class Signup extends Component {
                             </ul>
                         )
                     }
-                    <div className="formWrap">
-                        <form type="submit" onSubmit={this.handleSubmitForm} data-test="signupDataSubmit">
-                            <FormInput
-                                type="text"
-                                name="displayName"
-                                value={displayName}
-                                placeholder="Full name"
-                                onChange={this.hadleChange}
-                            />
+                    <form type="submit" onSubmit={this.handleSubmitForm} data-test="signupDataSubmit">
+                        <FormInput
+                            type="text"
+                            name="displayName"
+                            value={displayName}
+                            placeholder="Full name"
+                            onChange={this.hadleChange}
+                        />
 
-                            <FormInput
-                                type="email"
-                                name="email"
-                                value={email}
-                                placeholder="Email"
-                                onChange={this.hadleChange}
-                            />
+                        <FormInput
+                            type="email"
+                            name="email"
+                            value={email}
+                            placeholder="Email"
+                            onChange={this.hadleChange}
+                        />
 
-                            <FormInput
-                                type="password"
-                                name="password"
-                                value={password}
-                                placeholder="Password"
-                                onChange={this.hadleChange}
-                            />
+                        <FormInput
+                            type="password"
+                            name="password"
+                            value={password}
+                            placeholder="Password"
+                            onChange={this.hadleChange}
+                        />
 
-                            <FormInput
-                                type="password"
-                                name="confirmPassword"
-                                value={confirmPassword}
-                                placeholder="Confirm Password"
-                                onChange={this.hadleChange}
-                            />
+                        <FormInput
+                            type="password"
+                            name="confirmPassword"
+                            value={confirmPassword}
+                            placeholder="Confirm Password"
+                            onChange={this.hadleChange}
+                        />
 
-                            <Buttons type="submit">
-                                Register
+                        <Buttons type="submit">
+                            Register
                         </Buttons>
-                        </form>
-                    </div>
+                    </form>
                 </div>
-            </div>
+            </AuthWrapper>
         );
     }
 }

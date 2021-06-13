@@ -7,6 +7,7 @@ import HomepageLayout from './layouts/homepagelayouts/homepage-layout-component'
 import Registrationabc from './components/pages/Registration/registration-component';
 import Login from './components/pages/Login/login-component';
 import { auth, handleUserProfile } from './firebase/_util';
+import Recovery from './components/pages/Recovery/recovery-compoent'
 
 // const initialState = {
 //   currentUser: null
@@ -104,6 +105,9 @@ const App = () => {
         </MainLayout>} />
         <Route path="/login" render={() => currentauth.currentUser ? <Redirect to="/" /> : <MainLayout currentUser={currentauth.currentUser}>
           <Login />
+        </MainLayout>} />
+        <Route path="/recovery" render={() => <MainLayout>
+         <Recovery />
         </MainLayout>} />
       </Switch>
     </div>
