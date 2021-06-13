@@ -60,7 +60,7 @@ class Signup extends Component {
                         )
                     }
                     <div className="formWrap">
-                        <form onSubmit={this.handleSubmitForm}>
+                        <form type="submit" onSubmit={this.handleSubmitForm} data-test="signupDataSubmit">
                             <FormInput
                                 type="text"
                                 name="displayName"
