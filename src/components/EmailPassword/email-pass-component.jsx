@@ -48,7 +48,7 @@ class EmailPassword extends Component {
             headline: 'Email Password'
         }
         return (
-            <AuthWrapper {...configAuthWrapper}>
+            <AuthWrapper {...configAuthWrapper} data-test="EmailPassAuthWrapperCompoentAccess">
                 <div className="formWrap">
                     {
                         errors.length > 0 && (
@@ -63,7 +63,7 @@ class EmailPassword extends Component {
                             </ul>
                         )
                     }
-                    <form type="submit" onSubmit={this.handleSubmit} data-test="submitEventhadle">
+                    <form type="submit" onSubmit={this.handleSubmit} className="submitEventhadle">
                         <FormInput
                             type="email"
                             name="email"
