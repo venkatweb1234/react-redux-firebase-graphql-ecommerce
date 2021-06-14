@@ -11,7 +11,7 @@ const FormInput =({hadleChange, label, ...otherProps}) =>{
                     </label>
                 )
             }
-            <input className="formInput" onChange={hadleChange} {...otherProps} />
+            <input className="formInput" onChange={hadleChange} {...otherProps} data-test="formRowInput"/>
         </div>
     )
 }
