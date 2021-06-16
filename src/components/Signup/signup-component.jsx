@@ -5,104 +5,103 @@ import FormInput from '../forms/FormInput/forminput-compoent';
 import './signup-style.scss';
 import { auth, handleUserProfile } from '../../firebase/_util';
 import AuthWrapper from '../AuthWrapper/authwrap-component';
-class Signup extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            ...initialsignUpState
-        }
-        this.hadleChange = this.hadleChange.bind(this);
+import { useState } from 'react';
+import { withRouter } from 'react-router-dom';
+
+
+const Signup = (props) => {
+    const [displayName, setdisplayName] = useState('');
+    const [email, setemail] = useState('');
+    const [password, setpassword] = useState('');
+    const [confirmPassword, setconfirmPassword] = useState('');
+    const [errors, seterrors] = useState('');
+
+    const resetForm = () => {
+        setpassword('');
+        setemail('');
+        setdisplayName('');
+        setconfirmPassword('');
+        seterrors('');
     }
-    hadleChange = (e) => {
-        const { name, value } = e.target;
-        this.setState({
-            [name]: value
-        })
-    }
-    handleSubmitForm = async e => {
+    const handleSubmitForm = async e => {
         e.preventDefault();
-        const { displayName, email, password, confirmPassword, errors } = this.state;
         if (password !== confirmPassword) {
             const err = ['Password Don\'t Match'];
-            this.setState({
-                errors: err
-            })
+            seterrors(err);
             return;
         }
 
         try {
             const { user } = await auth.createUserWithEmailAndPassword(email, password);
             await handleUserProfile(user, { displayName });
-            this.setState({
-                ...initialsignUpState
-            })
+            resetForm();
+            props.history.push('/');
         }
         catch (err) {
             console.log(err);
         }
     }
-    render() {
-        const { displayName, email, password, confirmPassword, errors } = this.state;
-        const configAuthWrapper ={
-            headline:'Registration'
-        }
-        return (
-            <AuthWrapper {...configAuthWrapper}>
-                <div className="formWrap">
-                    {
-                        errors.length > 0 && (
-                            <ul>
-                                {errors.map((err, index) => {
-                                    return (
-                                        <li key={index}>
-                                            {err}
-                                        </li>
-                                    )
-                                })}
-                            </ul>
-                        )
-                    }
-                    <form type="submit" onSubmit={this.handleSubmitForm} data-test="signupDataSubmit">
-                        <FormInput
-                            type="text"
-                            name="displayName"
-                            value={displayName}
-                            placeholder="Full name"
-                            onChange={this.hadleChange}
-                        />
 
-                        <FormInput
-                            type="email"
-                            name="email"
-                            value={email}
-                            placeholder="Email"
-                            onChange={this.hadleChange}
-                        />
-
-                        <FormInput
-                            type="password"
-                            name="password"
-                            value={password}
-                            placeholder="Password"
-                            onChange={this.hadleChange}
-                        />
-
-                        <FormInput
-                            type="password"
-                            name="confirmPassword"
-                            value={confirmPassword}
-                            placeholder="Confirm Password"
-                            onChange={this.hadleChange}
-                        />
-
-                        <Buttons type="submit">
-                            Register
-                        </Buttons>
-                    </form>
-                </div>
-            </AuthWrapper>
-        );
+    const configAuthWrapper = {
+        headline: 'Registration'
     }
+    return (
+        <AuthWrapper {...configAuthWrapper}>
+            <div className="formWrap">
+                {
+                    errors.length > 0 && (
+                        <ul>
+                            {errors.map((err, index) => {
+                                return (
+                                    <li key={index}>
+                                        {err}
+                                    </li>
+                                )
+                            })}
+                        </ul>
+                    )
+                }
+                <form type="submit" onSubmit={handleSubmitForm} data-test="signupDataSubmit">
+                    <FormInput
+                        type="text"
+                        name="displayName"
+                        value={displayName}
+                        placeholder="Full name"
+                        hadleChange={e => setdisplayName(e.target.value)}
+                    />
+
+                    <FormInput
+                        type="email"
+                        name="email"
+                        value={email}
+                        placeholder="Email"
+                        hadleChange={e => setemail(e.target.value)}
+                    />
+
+                    <FormInput
+                        type="password"
+                        name="password"
+                        value={password}
+                        placeholder="Password"
+                        hadleChange={e => setpassword(e.target.value)}
+                    />
+
+                    <FormInput
+                        type="password"
+                        name="confirmPassword"
+                        value={confirmPassword}
+                        placeholder="Confirm Password"
+                        hadleChange={e => setconfirmPassword(e.target.value)}
+                    />
+
+                    <Buttons type="submit">
+                        Register
+                    </Buttons>
+                </form>
+            </div>
+        </AuthWrapper>
+    );
 }
 
-export default Signup;
+
+export default withRouter(Signup);
