@@ -1,34 +1,41 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Buttons from '../forms/Button/button-component';
 import './signin-style.scss';
-import { auth, signInWithGoogle } from './../../firebase/_util';
-import { initialSigninState } from '../constants/constants-variables';
+import { signInUser, signInWithGoogle } from './../../redux/User/user.actions';
 import FormInput from '../forms/FormInput/forminput-compoent';
 import AuthWrapper from '../AuthWrapper/authwrap-component';
 import { Link, withRouter } from 'react-router-dom';
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+
+const mapState = ({ user }) => ({
+    signInSuccess: user.signInSuccess
+})
 
 const SignIn = (props) => {
+    const { signInSuccess } = useSelector(mapState);
+    const dispatch = useDispatch();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
+    useEffect(() => {
+        if (signInSuccess) {
+            resetForm();
+            props.history.push('/');
+        }
+    },[signInSuccess])
     const resetForm = () => {
         setPassword('');
         setEmail('');
     }
     const handleSubmit = async e => {
         e.preventDefault();
-        try {
-            await auth.signInWithEmailAndPassword(email, password);
-            resetForm();
-            props.history.push('/');
-        }
-        catch (err) {
-            console.log(err);
-        }
+        dispatch(signInUser({ email, password }))
     }
     const configWrapper = {
         headline: 'LogIn'
+    }
+    const handleGoogleSignIn =() =>{
+        dispatch(signInWithGoogle());
     }
     return (
         <AuthWrapper {...configWrapper}>
@@ -53,7 +60,7 @@ const SignIn = (props) => {
                     </Buttons>
                     <div className="socialSignin">
                         <div className="row" data-test="signInGoogleFirebase">
-                            <Buttons onClick={signInWithGoogle} data-test="siginwithGoogleComponent">
+                            <Buttons onClick={handleGoogleSignIn} data-test="siginwithGoogleComponent">
                                 Sign in with Google
                             </Buttons>
                         </div>

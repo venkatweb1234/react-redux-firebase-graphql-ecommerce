@@ -9,26 +9,27 @@ import Login from './components/pages/Login/login-component';
 import { auth, handleUserProfile } from './firebase/_util';
 import Recovery from './components/pages/Recovery/recovery-compoent';
 import Dashboard from './components/pages/Dashboard/dashboard.component'
-import { connect } from 'react-redux';
+import { useSelector, useDispatch} from 'react-redux';
 import { setCurrentUser } from './redux/User/user.actions';
 import WithAuthHoc from './hoc/withAuthhoc';
 
 const App = props => {
-  const { currentUser, setCurrentUser } = props;
+ const dispatch = useDispatch();
+
   useEffect(() => {
     const authListener = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await handleUserProfile(userAuth);
         userRef.onSnapshot(snapshot => {
-          setCurrentUser({
+          dispatch(setCurrentUser({
             currentUser: {
               id: snapshot.id,
               ...snapshot.data()
             }
-          })
+          }))
         })
       };
-      setCurrentUser(userAuth);
+      dispatch(setCurrentUser(userAuth));
     })
 
     return () => {
@@ -62,12 +63,7 @@ const App = props => {
     </div>
   );
 }
-export const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser
-})
-export const mapDispatchToProps = dispatch => ({
-  setCurrentUser: (user) => dispatch(setCurrentUser(user))
-})
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+export default App;
