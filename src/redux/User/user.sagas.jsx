@@ -120,8 +120,6 @@ export function* onGoogleSignInStart() {
     yield takeLatest(userTypes.GOOGLE_SIGN_IN_START, googleSignIn)
 }
 
-
-
 export default function* userSagas() {
     yield all
         ([
