@@ -3,32 +3,34 @@ import AuthWrapper from '../AuthWrapper/authwrap-component';
 import './emailpass-style.scss';
 import FormInput from '../forms/FormInput/forminput-compoent';
 import Buttons from '../forms/Button/button-component';
-import { withRouter } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { resetPassword } from '../../redux/User/user.actions';
+import { resetPasswordStart, resetUserState } from '../../redux/User/user.actions';
 
 const mapState = ({ user }) => ({
-    resetPasswordSucess: user.resetPasswordSucess,
-    resetPasswordError:user.resetPasswordError
+    resetPasswordSuccess: user.resetPasswordSuccess,
+    userErr: user.userErr
 })
 const EmailPassword = props => {
     const dispatch = useDispatch();
-    const { resetPasswordSucess, resetPasswordError } = useSelector(mapState);
+    const history = useHistory();
+    const { resetPasswordSuccess, userErr } = useSelector(mapState);
     const [email, setEmail] = useState('');
-    const [errors, setErrors] = useState('');
+    const [errors, setErrors] = useState([]);
     useEffect(() => {
-        if (resetPasswordSucess) {
-            props.history.push('/login');
+        if (resetPasswordSuccess) {
+            dispatch(resetUserState());
+            history.push('/login');
         }
-    },[resetPasswordSucess]);
+    }, [resetPasswordSuccess]);
     useEffect(() => {
-        if (resetPasswordError.length >0 && Array.isArray(resetPasswordError)) {
-            setErrors(resetPasswordError);
+        if (Array.isArray(userErr) && userErr.length > 0) {
+            setErrors(userErr);
         }
-    },[resetPasswordError])
-    const handleSubmit = async e => {
+    }, [userErr])
+    const handleSubmit = e => {
         e.preventDefault();
-        dispatch(resetPassword({ email }));
+        dispatch(resetPasswordStart({ email }));
     }
     const configAuthWrapper = {
         headline: 'Email Password'
@@ -68,4 +70,4 @@ const EmailPassword = props => {
 }
 
 
-export default withRouter(EmailPassword);
+export default EmailPassword;
