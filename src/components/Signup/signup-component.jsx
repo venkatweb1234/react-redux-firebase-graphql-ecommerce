@@ -76,7 +76,7 @@ const Signup = (props) => {
                         name="displayName"
                         value={displayName}
                         placeholder="Full name"
-                        hadleChange={e => setdisplayName(e.target.value)}
+                        handleChange={e => setdisplayName(e.target.value)}
                     />
 
                     <FormInput
@@ -84,7 +84,7 @@ const Signup = (props) => {
                         name="email"
                         value={email}
                         placeholder="Email"
-                        hadleChange={e => setemail(e.target.value)}
+                        handleChange={e => setemail(e.target.value)}
                     />
 
                     <FormInput
@@ -92,7 +92,7 @@ const Signup = (props) => {
                         name="password"
                         value={password}
                         placeholder="Password"
-                        hadleChange={e => setpassword(e.target.value)}
+                        handleChange={e => setpassword(e.target.value)}
                     />
 
                     <FormInput
@@ -100,7 +100,7 @@ const Signup = (props) => {
                         name="confirmPassword"
                         value={confirmPassword}
                         placeholder="Confirm Password"
-                        hadleChange={e => setconfirmPassword(e.target.value)}
+                        handleChange={e => setconfirmPassword(e.target.value)}
                     />
 
                     <Buttons type="submit">

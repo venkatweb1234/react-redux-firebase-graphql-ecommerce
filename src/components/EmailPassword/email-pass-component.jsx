@@ -57,7 +57,7 @@ const EmailPassword = props => {
                         name="email"
                         value={email}
                         placeholder="Email"
-                        hadleChange={e => setEmail(e.target.value)}
+                        handleChange={e => setEmail(e.target.value)}
                     />
 
                     <Buttons type="submit">

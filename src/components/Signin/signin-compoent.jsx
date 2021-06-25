@@ -47,14 +47,14 @@ const SignIn = (props) => {
                         name="email"
                         value={email}
                         placeholder="Email"
-                        hadleChange={e => setEmail(e.target.value)}
+                        handleChange={e => setEmail(e.target.value)}
                     />
                     <FormInput
                         type="password"
                         name="password"
                         value={password}
                         placeholder="Password"
-                        hadleChange={e => setPassword(e.target.value)}
+                        handleChange={e => setPassword(e.target.value)}
                     />
                     <Buttons type="submit">
                         LogIn

@@ -1,7 +1,7 @@
 import React from 'react';
 import './forminput-style.scss';
 
-const FormInput =({hadleChange, label, ...otherProps}) =>{
+const FormInput =({handleChange, label, ...otherProps}) =>{
     return(
         <div className="formRow">
             {
@@ -11,7 +11,7 @@ const FormInput =({hadleChange, label, ...otherProps}) =>{
                     </label>
                 )
             }
-            <input className="formInput" onChange={hadleChange} {...otherProps} data-test="formRowInput"/>
+            <input className="formInput" onChange={handleChange} {...otherProps} data-test="formRowInput"/>
         </div>
     )
 }
