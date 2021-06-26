@@ -71,6 +71,7 @@ export const handleFetchProduct = (productID) => {
   return new Promise((resolve, reject) => {
     firestore
       .collection('products')
+      .orderBy('createDate')
       .doc(productID)
       .get()
       .then(snapshot => {

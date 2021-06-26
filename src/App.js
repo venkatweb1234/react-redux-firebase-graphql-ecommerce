@@ -22,6 +22,7 @@ import DashBoardLayout from "./layouts/DashboardLayout/dashboardLayout.comp";
 import AdminLayout from "./layouts/adminlayout/AdminLayout.component";
 import Homepage from "./components/pages/Homepage/page-compoent";
 import Adminpage from "./components/pages/Admin/admin.component";
+import Search from "./components/pages/Search/search.comp";
 //Admin Tool Bar
 import AdminToolbar from "./components/AdminToolbar/admintool.component";
 //Scss
@@ -47,7 +48,7 @@ const App = (props) => {
             </HomepageLayout>
           )}
         />
-        {/* <Route
+        <Route
           exact
           path="/search"
           render={() => (
@@ -56,6 +57,7 @@ const App = (props) => {
             </MainLayout>
           )}
         />
+        {/* 
         <Route
           path="/search/:filterType"
           render={() => (
