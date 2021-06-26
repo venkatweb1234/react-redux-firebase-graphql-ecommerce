@@ -1,13 +1,13 @@
 import React from 'react';
-import Button from './../forms/Button/button-component';
+import Buttons from '../forms/Button/button-component';
 
 const LoadMore = ({
   onLoadMoreEvt = () => { },
 }) => {
   return (
-    <Button onClick={() => onLoadMoreEvt()}>
+    <Buttons onClick={() => onLoadMoreEvt()}>
       Load More
-    </Button>
+    </Buttons>
   );
 };
 

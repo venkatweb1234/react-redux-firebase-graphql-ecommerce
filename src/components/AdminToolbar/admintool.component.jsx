@@ -14,7 +14,7 @@ const AdminToolbar = (props) => {
 
   if (!isAdmin) return null;
   return (
-    <div className="adminToolbar">
+    <div className="adminToolbar" data-test="adminToolbattest">
       <ul>
         <li>
           <Link to="/admin">My admin</Link>
