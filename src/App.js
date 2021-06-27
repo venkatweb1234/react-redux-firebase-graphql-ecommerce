@@ -24,6 +24,7 @@ import Homepage from "./components/pages/Homepage/page-compoent";
 import Adminpage from "./components/pages/Admin/admin.component";
 import Search from "./components/pages/Search/search.comp";
 import ProductDetails from "./components/pages/ProductDetails/productdetail";
+//import Cart
 //Admin Tool Bar
 import AdminToolbar from "./components/AdminToolbar/admintool.component";
 //Scss
@@ -74,6 +75,7 @@ const App = (props) => {
             </MainLayout>
           )}
         />
+        
         {/* 
         <Route
           path="/search/:filterType"

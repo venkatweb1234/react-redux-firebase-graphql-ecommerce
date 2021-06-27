@@ -1,29 +1,30 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
 import Buttons from "../../forms/Button/button-component";
+import { addProduct } from "../../../redux/Cart/cart.actions";
 
 const Product = (product) => {
- // const dispatch = useDispatch();
-  //const history = useHistory();
-  const {
-    documentID,
-    productThumbnail,
-    productName,
-    productPrice
-  } = product;
-  if (!documentID || !productThumbnail || !productName ||
-    typeof productPrice === 'undefined') return null;
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const { documentID, productThumbnail, productName, productPrice } = product;
+  if (
+    !documentID ||
+    !productThumbnail ||
+    !productName ||
+    typeof productPrice === "undefined"
+  )
+    return null;
 
   const configAddToCartBtn = {
-    type: 'button'
+    type: "button",
   };
 
   const handleAddToCart = (product) => {
+    console.log(product)
     if (!product) return;
-    // dispatch(
-    //  // addProduct(product)
-    // );
-    // //history.push('/cart');
+    dispatch(addProduct(product));
+    //history.push("/cart");
   };
 
   return (
@@ -38,26 +39,24 @@ const Product = (product) => {
         <ul>
           <li>
             <span className="name">
-              <Link to={`/product/${documentID}`}>
-                {productName}
-              </Link>
+              <Link to={`/product/${documentID}`}>{productName}</Link>
             </span>
           </li>
           <li>
-            <span className="price">
-              £{productPrice}
-            </span>
+            <span className="price">£{productPrice}</span>
           </li>
           <li>
             <div className="addToCart">
-              <Buttons {...configAddToCartBtn} onClick={() => handleAddToCart(product)}>
+              <Buttons
+                {...configAddToCartBtn}
+                onClick={() => handleAddToCart(product)}
+              >
                 Add to cart
               </Buttons>
             </div>
           </li>
         </ul>
       </div>
-
     </div>
   );
 };
