@@ -21,7 +21,7 @@ export const handleFetchProducts = ({
   persistProducts = [],
 }) => {
   return new Promise((resolve, reject) => {
-    const pageSize = 6;
+    const pageSize =20;
 
     let ref = firestore
       .collection("products")
@@ -78,15 +78,13 @@ export const handleFetchProduct = (productID) => {
   return new Promise((resolve, reject) => {
     firestore
       .collection("products")
-      .orderBy("createDate")
       .doc(productID)
       .get()
       .then((snapshot) => {
         if (snapshot.exists) {
-          resolve({
-            ...snapshot.data(),
-            documentID: productID,
-          });
+          resolve(
+            snapshot.data()
+          );
         }
       })
       .catch((err) => {

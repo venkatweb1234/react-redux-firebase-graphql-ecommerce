@@ -10,7 +10,9 @@ import FormInput from "./../../../components/forms/FormInput/forminput-compoent"
 import FormSelect from "./../../../components/forms/FormSelect/formselect.comp";
 import Button from "./../../../components/forms/Button/button-component";
 import LoadMore from "./../../../components/LoadMore/loadmore.comp";
-import CKEditor from "@ckeditor/ckeditor5-react";
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 import "./admin.style.scss";
 
 const mapState = ({ productsData }) => ({
@@ -80,6 +82,9 @@ const Admin = props => {
     onLoadMoreEvt: handleLoadMore,
   };
 
+  const inputHandler = (event, editor) => {
+    setProductDesc(editor.getData());
+};
   return (
     <div className="admin">
 
@@ -136,10 +141,13 @@ const Admin = props => {
               value={productPrice}
               handleChange={e => setProductPrice(e.target.value)}
             />
+            
 
-            {/* <CKEditor
-              onChange={evt => setProductDesc(evt.editor.getData())}
-            /> */}
+            <CKEditor
+                  id="inputText"
+                  editor={ClassicEditor}
+                  onChange={inputHandler}
+                />
 
             <br />
 

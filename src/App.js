@@ -23,6 +23,7 @@ import AdminLayout from "./layouts/adminlayout/AdminLayout.component";
 import Homepage from "./components/pages/Homepage/page-compoent";
 import Adminpage from "./components/pages/Admin/admin.component";
 import Search from "./components/pages/Search/search.comp";
+import ProductDetails from "./components/pages/ProductDetails/productdetail";
 //Admin Tool Bar
 import AdminToolbar from "./components/AdminToolbar/admintool.component";
 //Scss
@@ -62,6 +63,14 @@ const App = (props) => {
           render={() => (
             <MainLayout>
               <Search />
+            </MainLayout>
+          )}
+        />
+         <Route
+          path="/product/:productID"
+          render={() => (
+            <MainLayout>
+              <ProductDetails />
             </MainLayout>
           )}
         />
