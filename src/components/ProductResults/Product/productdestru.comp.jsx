@@ -24,7 +24,7 @@ const Product = (product) => {
     console.log(product)
     if (!product) return;
     dispatch(addProduct(product));
-    //history.push("/cart");
+    history.push("/cart");
   };
 
   return (

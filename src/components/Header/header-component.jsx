@@ -27,7 +27,7 @@ const Header = (props) => {
           </Link>
         </div>
         <nav>
-          <ul>
+          <ul className="htauto">
             <li>
               <Link to="/">Home</Link>
             </li>
@@ -39,7 +39,7 @@ const Header = (props) => {
         <div className="callToActions">
           <ul>
             <li className="cartYour">
-              <Link>Your Cart ({totalNumCartItems})</Link>
+              <Link to='/cart'>Your Cart ({totalNumCartItems})</Link>
             </li>
             {currentUser && [
               <li className="dashboard">
