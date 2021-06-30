@@ -25,6 +25,7 @@ import Adminpage from "./components/pages/Admin/admin.component";
 import Search from "./components/pages/Search/search.comp";
 import ProductDetails from "./components/pages/ProductDetails/productdetail";
 import Cart from "./components/pages/Cart/cartpage.comp";
+import Payment from "./components/pages/Payments/payment.comp";
 //Admin Tool Bar
 import AdminToolbar from "./components/AdminToolbar/admintool.component";
 //Scss
@@ -67,7 +68,7 @@ const App = (props) => {
             </MainLayout>
           )}
         />
-         <Route
+        <Route
           path="/product/:productID"
           render={() => (
             <MainLayout>
@@ -75,11 +76,11 @@ const App = (props) => {
             </MainLayout>
           )}
         />
-         <Route
+        <Route
           path="/cart"
           render={() => (
             <MainLayout>
-              < Cart/>
+              <Cart />
             </MainLayout>
           )}
         />
@@ -118,6 +119,17 @@ const App = (props) => {
             </WithAuth>
           )}
         /> */}
+
+        <Route
+          path="/payment"
+          render={() => (
+            <WithAuthHoc>
+            <MainLayout>
+              <Payment />
+            </MainLayout>
+            </WithAuthHoc>
+          )}
+        />
         <Route
           path="/registration"
           render={() => (

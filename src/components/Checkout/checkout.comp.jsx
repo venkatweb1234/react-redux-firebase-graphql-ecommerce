@@ -92,7 +92,8 @@ const Checkout = ({}) => {
                                   <Buttons onClick={() => history.goBack()}>Continue Shopping</Buttons>
                                 </td>
                                 <td>
-                                  <Buttons>Checkout</Buttons>
+                                  <Buttons onClick={() => history.push('/payment')}
+                                  >Checkout</Buttons>
                                 </td>
                               </tr>
                             </tbody>
