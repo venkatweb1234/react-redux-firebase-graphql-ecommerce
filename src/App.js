@@ -26,6 +26,7 @@ import Search from "./components/pages/Search/search.comp";
 import ProductDetails from "./components/pages/ProductDetails/productdetail";
 import Cart from "./components/pages/Cart/cartpage.comp";
 import Payment from "./components/pages/Payments/payment.comp";
+import Order from "./components/pages/Order/order.comp";
 //Admin Tool Bar
 import AdminToolbar from "./components/AdminToolbar/admintool.component";
 //Scss
@@ -124,9 +125,9 @@ const App = (props) => {
           path="/payment"
           render={() => (
             <WithAuthHoc>
-            <MainLayout>
-              <Payment />
-            </MainLayout>
+              <MainLayout>
+                <Payment />
+              </MainLayout>
             </WithAuthHoc>
           )}
         />
@@ -164,16 +165,16 @@ const App = (props) => {
             </WithAuthHoc>
           )}
         />
-        {/* <Route
+        <Route
           path="/order/:orderID"
           render={() => (
-            <WithAuth>
-              <DashboardLayout>
+            <WithAuthHoc>
+              <DashBoardLayout>
                 <Order />
-              </DashboardLayout>
-            </WithAuth>
+              </DashBoardLayout>
+            </WithAuthHoc>
           )}
-        /> */}
+        />
         <Route
           path="/admin"
           render={() => (
